@@ -1,5 +1,4 @@
 provider "aws" {
-  region = "${var.aws_region}"
 }
 
 resource "aws_key_pair" "swarm_keypair"{
