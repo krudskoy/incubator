@@ -26,5 +26,4 @@ variable "key_path" {
 ```shell
 terraform init
 terraform apply
-ansible-playbook -i hosts playbook.yml
 ```
