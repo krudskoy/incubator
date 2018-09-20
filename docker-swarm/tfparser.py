@@ -61,10 +61,12 @@ resources = data["modules"][0]["resources"]
 for resource in resources:
     resource_type = resources[resource]["type"]
     if resource_type == 'aws_instance':
-        if  resources[resource]["primary"]["attributes"]["tags.swarm_type"] == "master":
-            masters.append(resources[resource]["primary"]["attributes"]["public_ip"])
-        elif resources[resource]["primary"]["attributes"]["tags.swarm_type"] == "worker":
-            workers.append(resources[resource]["primary"]["attributes"]["public_ip"])
+        swarm_type = resources[resource]["primary"]["attributes"]["tags.swarm_type"]
+        public_ip = resources[resource]["primary"]["attributes"]["public_ip"]
+        if  swarm_type == "master":
+            masters.append(public_ip)
+        elif swarm_type == "worker":
+            workers.append(public_ip)
 
 
 
