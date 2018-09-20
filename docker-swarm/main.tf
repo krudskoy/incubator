@@ -32,6 +32,6 @@ tags {
   }
 
 provisioner "local-exec" {
-        command = "sleep 90;ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --private-key ./id_rsa -i tfparser.py playbook.yml"
+        command = "sleep 120;ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --private-key ./id_rsa -i tfparser.py playbook.yml"
     }
 }
