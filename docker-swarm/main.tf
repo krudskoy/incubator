@@ -15,6 +15,7 @@ resource "aws_instance" "swarm_master" {
 
 tags {
     Name  = "swarm_master"
+    swarm_type = "master"
   }
 }
 
@@ -27,5 +28,10 @@ resource "aws_instance" "swarm_worker" {
 
 tags {
     Name  = "swarm_worker"
+    swarm_type = "worker"
   }
+
+provisioner "local-exec" {
+        command = "sleep 90;ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --private-key ./id_rsa -i tfparser.py playbook.yml"
+    }
 }
