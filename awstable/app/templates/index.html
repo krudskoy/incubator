@@ -1,0 +1,19 @@
+{% block content %}
+    <h1>Describe AWS Instances</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.aws_access_key_id.label }}<br>
+            {{ form.aws_access_key_id(size=32) }}
+        </p>
+        <p>
+            {{ form.aws_secret_access_key.label }}<br>
+            {{ form.aws_secret_access_key(size=32) }}
+        </p>
+        <p>
+            {{ form.aws_region.label }}<br>
+            {{ form.aws_region(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

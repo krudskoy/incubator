@@ -1,0 +1,50 @@
+<html>
+
+<table id="t01" border="1">
+  <tr>
+    <th>Name</th>
+    <th>Instance Id</th>
+    <th>Instance Type</th> 
+    <th>Availability Zone</th>
+    <th>Instance State</th>
+    <th>Public DNS</th>
+    <th>Public IP</th>
+    <th>Monitoring</th>
+    <th>Security Group</th>
+  </tr>
+
+
+  {% for x in instances %}
+  <tr>
+      {% if x["Instances"][0]["Tags"] %}
+          {% for y in x["Instances"][0]["Tags"] if y["Key"] == "Name" %}
+              <td>{{ y["Value"] }}</td>
+          {% endfor %}
+      {% else %}
+      <td></td>
+      {% endif %}
+
+  <td>{{ x["Instances"][0]["InstanceId"] }}</td>
+  <td>{{ x["Instances"][0]["InstanceType"] }}</td>
+  <td>{{ x["Instances"][0]["Placement"]["AvailabilityZone"] }}</td>
+  <td>{{ x["Instances"][0]["State"]["Name"] }}</td> 
+  {% if x["Instances"][0]["PublicDnsName"] %}
+      <td>{{ x["Instances"][0]["PublicDnsName"] }}</td>
+  {% else %}
+  <td></td>  
+  {% endif %}
+  {% if x["Instances"][0]["PublicIpAddress"] %}
+      <td>{{ x["Instances"][0]["PublicIpAddress"] }}</td>
+  {% else %}
+  <td></td>  
+  {% endif %}
+  <td>{{ x["Instances"][0]["Monitoring"]["State"] }}</td>
+  <td>{{ x["Instances"][0]["SecurityGroups"][0]["GroupName"] }}</td>
+
+  </tr>
+  {% endfor %}
+
+</table>
+
+
+</html>
